@@ -1,0 +1,1 @@
+# student-competition-resources-ros
