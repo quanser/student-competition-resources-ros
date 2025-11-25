@@ -25,18 +25,11 @@ def main():
         ############### CLONE REPOSITORIES ###########################
         ##############################################################
 
-        # Clone student competition resources ros repo to get docker container resources and custom Isaac ROS common files
-        cloneStudentCompetitionResourcesROS = subprocess.call("cd /home/$USER/Documents/ACC_Development/; git clone -b main https://github.com/quanser/student-competition-resources-ros.git", shell=True)
-        if cloneStudentCompetitionResourcesROS!=0:
+        # Clone Student Competitions repo to get docker container resources and custom Isaac ROS common files 
+        cloneStudentCompetitionsRepo = subprocess.call("cd /home/$USER/Documents/ACC_Development/; git clone -b main https://github.com/quanser/student-competitions.git", shell=True)
+        if cloneStudentCompetitionsRepo!=0:
             subprocess.call("sudo apt-get install git", shell = True)
-            cloneStudentCompetitionResourcesROS = subprocess.call("cd /home/$USER/Documents/ACC_Development/; git clone https://github.com/quanser/student-competition-resources-ros.git", shell=True)
-
-
-        # # Clone Student Competitions repo to get docker container resources and custom Isaac ROS common files 
-        # cloneStudentCompetitionsRepo = subprocess.call("cd /home/$USER/Documents/ACC_Development/; git clone -b main https://github.com/quanser/student-competitions.git", shell=True)
-        # if cloneStudentCompetitionsRepo!=0:
-        #     subprocess.call("sudo apt-get install git", shell = True)
-        #     cloneStudentCompetitionsRepo = subprocess.call("cd /home/$USER/Documents/ACC_Development/; git clone https://github.com/quanser/student-competitions.git", shell=True)
+            cloneStudentCompetitionsRepo = subprocess.call("cd /home/$USER/Documents/ACC_Development/; git clone https://github.com/quanser/student-competitions.git", shell=True)
 
         # Clone Quanser Academic Resources repo to get qcar 2 specific resources
         cloneAcademicResources = subprocess.call("cd /home/$USER/Documents/ACC_Development/; git clone -b main https://github.com/quanser/Quanser_Academic_Resources.git", shell=True)
@@ -64,7 +57,7 @@ def main():
         #    ├── isaac_ros_common
         #
 
-        ### Source is from student-competition-resources-ros repo ###
+        ### Source is from student-competitions repo ###
 
         # Make docker folder in ACC DEVELOPMENT
         makeDockerFolder =  subprocess.call(" mkdir /home/$USER/Documents/ACC_Development/docker",shell=True)
@@ -73,14 +66,14 @@ def main():
             return
 
         # Copy quanser docker files into Docker folder in ACC DEVELOPMENT
-        copyQuanserDockerFiles = subprocess.call("cp -r /home/$USER/Documents/ACC_Development/student-competition-resources-ros/Virtual_ROS_Resources/env_setup/docker_resources/quanser_docker /home/$USER/Documents/ACC_Development/docker", shell=True)
+        copyQuanserDockerFiles = subprocess.call("cp -r /home/$USER/Documents/ACC_Development/student-competitions/events/common/Virtual_ROS_Resources/env_setup/docker_resources/quanser_docker /home/$USER/Documents/ACC_Development/docker", shell=True)
 
         if copyQuanserDockerFiles !=0:
             print("Unable to copy the Quanser Docker Files .... please delete folder ACC_Development folder and try again.. ")
             return
 
         # Copy development docker files into Docker folder in ACC DEVELOPMENT
-        copyDevelopmentDockerFiles = subprocess.call("cp -r /home/$USER/Documents/ACC_Development/student-competition-resources-ros/Virtual_ROS_Resources/env_setup/docker_resources/development_docker /home/$USER/Documents/ACC_Development/docker", shell=True)
+        copyDevelopmentDockerFiles = subprocess.call("cp -r /home/$USER/Documents/ACC_Development/student-competitions/events/common/Virtual_ROS_Resources/env_setup/docker_resources/development_docker /home/$USER/Documents/ACC_Development/docker", shell=True)
 
         if copyDevelopmentDockerFiles !=0:
             print("Unable to copy the Development Docker Files.... please delete folder ACC_Development folder and try again.. ")
@@ -93,9 +86,9 @@ def main():
             return
         
         # Copy misc files into miscs folder in docker folder in ACC DEVELOPMENT
-        copyMiscFiles = subprocess.call("cp -r /home/$USER/Documents/ACC_Development/student-competition-resources-ros/Virtual_ROS_Resources/env_setup/docker_resources/miscs /home/$USER/Documents/ACC_Development/docker/miscs", shell=True)
+        copyMiscFiles = subprocess.call("cp -r /home/$USER/Documents/ACC_Development/student-competitions/events/common/Virtual_ROS_Resources/env_setup/docker_resources/miscs /home/$USER/Documents/ACC_Development/docker/miscs", shell=True)
         if copyMiscFiles !=0:
-            print("Cannot copy misc files... please make sure the student-competition-resources-ros repo has been cloned correctly...")
+            print("Cannot copy misc files... please make sure the student-competitions repo has been cloned correctly...")
             return
 
         # Make isaac_ros_common folder in ACC DEVELOPMENT
@@ -105,9 +98,9 @@ def main():
             return
 
         # Copy Isaac ROS Common files into isaac_ros_common folder in ACC DEVELOPMENT
-        copyIsaacROSCommonFiles = subprocess.call("cp -r /home/$USER/Documents/ACC_Development/student-competition-resources-ros/Virtual_ROS_Resources/env_setup/isaac_ros_common /home/$USER/Documents/ACC_Development", shell=True)
+        copyIsaacROSCommonFiles = subprocess.call("cp -r /home/$USER/Documents/ACC_Development/student-competitions/events/common/Virtual_ROS_Resources/env_setup/isaac_ros_common /home/$USER/Documents/ACC_Development", shell=True)
         if copyIsaacROSCommonFiles !=0:
-            print("Cannot copy Isaac ROS Common files... please make sure the student-competition-resources-ros repo has been cloned correctly...")
+            print("Cannot copy Isaac ROS Common files... please make sure the student-competitions repo has been cloned correctly...")
             return
 
         ### Source is from Academic Resources repo ###
@@ -158,13 +151,13 @@ def main():
         if copyAcademicRepo !=0:
             print("Issue creating backup of academic repo")
             return
-        copyStudentCompRepo =  subprocess.call("cp -r /home/$USER/Documents/ACC_Development/student-competition-resources-ros /home/$USER/Documents/ACC_Development/backup", shell=True)
+        copyStudentCompRepo =  subprocess.call("cp -r /home/$USER/Documents/ACC_Development/student-competitions /home/$USER/Documents/ACC_Development/backup", shell=True)
         if copyStudentCompRepo !=0:
             print("Issue creating backup of academic repo")
             return
         # delete cloned repos
         cleanupAcademicRepo = subprocess.call( "rm -fr /home/$USER/Documents/ACC_Development/Quanser_Academic_Resources", shell=True)
-        cleanupSudentCompRepo = subprocess.call( "rm -fr /home/$USER/Documents/ACC_Development/student-competition-resources-ros", shell=True)
+        cleanupSudentCompRepo = subprocess.call( "rm -fr /home/$USER/Documents/ACC_Development/student-competitions", shell=True)
         if cleanupAcademicRepo!=0 or cleanupSudentCompRepo!=0:
             print("Could not delete repos")
 
