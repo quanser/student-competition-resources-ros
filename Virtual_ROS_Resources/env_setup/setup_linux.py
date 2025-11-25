@@ -60,7 +60,6 @@ def main():
         #           ├── development_docker (was isaac_ros)
         #           ├── quanser_docker (was virtual_qcar2)
         #           ├── 0_libraries
-        #           ├── miscs
         #    ├── isaac_ros_common
         #
 
@@ -84,18 +83,6 @@ def main():
 
         if copyDevelopmentDockerFiles !=0:
             print("Unable to copy the Development Docker Files.... please delete folder ACC_Development folder and try again.. ")
-            return
-        
-        # Make miscs folder in docker folder in ACC DEVELOPMENT
-        makeMiscsFolder =  subprocess.call(" mkdir /home/$USER/Documents/ACC_Development/docker/miscs",shell=True)
-        if makeMiscsFolder !=0:
-            print("Issue creating miscs folder")
-            return
-        
-        # Copy misc files into miscs folder in docker folder in ACC DEVELOPMENT
-        copyMiscFiles = subprocess.call("cp -r /home/$USER/Documents/ACC_Development/student-competition-resources-ros/Virtual_ROS_Resources/env_setup/docker_resources/miscs /home/$USER/Documents/ACC_Development/docker/miscs", shell=True)
-        if copyMiscFiles !=0:
-            print("Cannot copy misc files... please make sure the student-competition-resources-ros repo has been cloned correctly...")
             return
 
         # Make isaac_ros_common folder in ACC DEVELOPMENT
@@ -140,8 +127,11 @@ def main():
         if copyLibrariesToROSDocker !=0:
             print("Issue copying libraries to docker folder... please make sure the Quanser_Academic_Resources repo has been cloned correctly...")
             return
-
-
+        
+        copyLibrariesToROSDockerfiles = subprocess.call("cp -r /home/$USER/Documents/ACC_Development/Quanser_Academic_Resources/0_libraries /home/$USER/Documents/ACC_Development/docker/development_docker/quanser_dev_docker_files",shell=True)
+        if copyLibrariesToROSDockerfiles !=0:
+            print("Issue copying libraries to docker files folder... please make sure the Quanser_Academic_Resources repo has been cloned correctly...")
+            return
 
 
         ##############################################################
