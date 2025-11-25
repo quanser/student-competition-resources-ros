@@ -1,0 +1,73 @@
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+
+# Fix issues in isaac ros
+RUN rm /etc/apt/sources.list
+COPY miscs/sources.list /etc/apt/sources.list
+
+# Fix issues in ros-testing
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg \
+    lsb-release
+RUN apt-get install -y locales \
+    && locale-gen en_US.UTF-8 \
+    && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+ENV LANG=en_US.UTF-8
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key \
+    -o /usr/share/keyrings/ros-archive-keyring.gpg
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] \
+    http://packages.ros.org/ros2-testing/ubuntu $(lsb_release -cs) main" \
+    > /etc/apt/sources.list.d/ros2-testing.list
+RUN apt-get update
+
+# Fix issues in kitware
+RUN apt-get update && apt-get install -y ca-certificates wget gnupg
+RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc \
+  | gpg --dearmor \
+  | tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+RUN echo "deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main" \
+  | tee /etc/apt/sources.list.d/kitware.list
+
+# Make workspace for cartographer
+RUN mkdir -p /workspace/cartographer_ws/src
+
+# Clone necessary packages from github
+RUN cd /workspace/cartographer_ws/src \
+    && git clone https://github.com/cartographer-project/cartographer.git \
+    && git clone https://github.com/quanser/cartographer_ros.git \
+    && git clone --branch humble --single-branch https://github.com/ros-controls/control_msgs.git \
+    && git clone https://github.com/ros-perception/pcl_msgs.git \
+    && git clone -b humble https://github.com/ros-perception/perception_pcl.git \
+    && git clone -b release-2.1 https://github.com/NVIDIA-ISAAC-ROS/isaac_ros_common.git 
+
+# Set up Cartographer ROS
+WORKDIR /workspace/cartographer_ws
+RUN apt-get update && apt-get install -y \
+    python3-wstool \ 
+    python3-rosdep \
+    ninja-build \
+    stow \
+    && rm -rf /var/lib/apt/lists/* 
+
+RUN apt-get update && apt-get install -y \
+    python3-sphinx \
+    liblua5.2-dev \
+    libprotobuf-dev \
+    protobuf-compiler \
+    libprotoc-dev \
+    libpcl-dev \
+    && rm -rf /var/lib/apt/lists/* 
+
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install jinja2==3.0.0
+RUN /workspace/cartographer_ws/src/cartographer/scripts/install_abseil.sh
+RUN /workspace/cartographer_ws/src/cartographer_ros/scripts/prepare_glog_cmake.sh
+
+# Compile from source 
+RUN source /opt/ros/humble/setup.bash \ 
+    && colcon build --symlink-install
+
+# Make ROS and workspace available in all shells
+RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc \
+    && echo "source /workspace/cartographer_ws/install/setup.bash" >> ~/.bashrc

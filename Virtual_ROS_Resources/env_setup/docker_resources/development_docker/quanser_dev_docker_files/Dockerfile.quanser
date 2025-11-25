@@ -1,0 +1,40 @@
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+
+ARG QUANSER_REPO_URL="https://repo.quanser.com"
+ARG QUANSER_REPO_CONFIG="release"
+
+# Install system libraries that quanser-sdk depends on
+RUN apt-get update && apt-get install -y \
+    libasound2-dev \
+    libsndfile1-dev \
+    libavcodec-dev \
+    libavformat-dev \
+    libglib2.0-dev \
+    libfreenect-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN cp /usr/local/bin/pip3.8 /usr/bin/
+
+# Install debian files from online
+RUN wget --no-cache ${QUANSER_REPO_URL}/keys/Quanser.pub
+RUN wget --no-cache ${QUANSER_REPO_URL}/debian/${QUANSER_REPO_CONFIG}/config/99-quanser -O /etc/apt/preferences.d/99-quanser
+RUN wget --no-cache ${QUANSER_REPO_URL}/debian/${QUANSER_REPO_CONFIG}/config/quanser_focal.sources -O /etc/apt/sources.list.d/quanser_focal.sources
+RUN gpg --dearmor --homedir /root --output /usr/share/keyrings/Quanser.gpg Quanser.pub
+RUN rm Quanser.pub
+
+# Install quanser-sdk and quarc-runtime
+RUN apt-get update && apt-get install -y \
+    quanser-sdk \
+    quarc-runtime \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python Packages if necessary
+RUN pip3 install -U \
+    pytransform3d \
+    pyqtgraph \
+    matplotlib
+
+# Copy quanser hal and pal folders inside isaac_ros and define environment variable
+COPY ./libraries /home/Quanser/0_libraries
+ENV PYTHONPATH=/home/Quanser/0_libraries/python
