@@ -6,7 +6,7 @@ This repo contains all the resources available for the Quanser MATLAB-based comp
 
 [Student Competitions](https://quanser.github.io/student-competitions/): Contains competition specific details and the rules & objectives for each competition.
 
-[Virtual MATLAB Software Setup](/Virtual_ROS_Resources/Virtual_ROS_Software_Setup.md): Contains the instructions and requirements to set up your computer to utilize the Quanser Resources. **This is a good place to start if lost.**
+[Virtual ROS Software Setup](/Virtual_ROS_Resources/Virtual_ROS_Software_Setup.md): Contains the instructions and requirements to set up your computer to utilize the Quanser Resources. **This is a good place to start if lost.**
 
 ## ❓ FAQ ❓
 

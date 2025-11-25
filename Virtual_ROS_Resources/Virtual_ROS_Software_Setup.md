@@ -1,4 +1,4 @@
-# Stage 1 Software Setup <!-- omit in toc -->
+# Virtual Stage ROS Software Setup <!-- omit in toc -->
 
 Please go through the following steps to set up a computer with the Quanser Virtual Development Environment.
 
@@ -66,7 +66,7 @@ The purpose of this docker container is to ensure safe setup of the Quanser Inte
 4. To setup Quanser's custom python docker navigate to the folder:
 
     ```bash
-    cd /home/$USER/Documents/ACC_Development/docker/virtual_qcar2
+    cd /home/$USER/Documents/ACC_Development/docker/development_docker/quanser_dev_docker_files
     ```
 
     And run the following command:
