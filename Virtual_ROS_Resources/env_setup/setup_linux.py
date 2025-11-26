@@ -137,6 +137,8 @@ def main():
         deleteROSFiles = subprocess.call("rm -r /home/$USER/Documents/ACC_Development/Development/python_resources/qcar/hardware/ros2", shell=True)
         rosFlag += deleteROSFiles
         deleteROSFiles = subprocess.call("rm -r /home/$USER/Documents/ACC_Development/Development/python_resources/qcar2/ros2", shell=True)
+        rosFlag += deleteROSFiles
+        deleteROSFiles = subprocess.call("rm -r /home/$USER/Documents/ACC_Development/Development/python_resources/qcar2/hardware/ros2", shell=True)
         if deleteROSFiles !=0:
             print("There may be issues removing the ROS resources")
             return

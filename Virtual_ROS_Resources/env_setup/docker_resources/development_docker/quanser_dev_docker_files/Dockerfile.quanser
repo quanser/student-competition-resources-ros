@@ -38,3 +38,7 @@ RUN pip3 install -U \
 # Copy quanser hal and pal folders inside isaac_ros and define environment variable
 COPY ./0_libraries /home/Quanser/0_libraries
 ENV PYTHONPATH=/home/Quanser/0_libraries/python
+
+# adding the cartographer + ros_humble to the ros environment
+RUN touch /home/admin/.bashrc
+RUN echo "source /workspace/cartographer_ws/install/setup.bash" >> /home/admin/.bashrc

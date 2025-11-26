@@ -67,7 +67,3 @@ RUN /workspace/cartographer_ws/src/cartographer_ros/scripts/prepare_glog_cmake.s
 # Compile from source 
 RUN source /opt/ros/humble/setup.bash \ 
     && colcon build --symlink-install
-
-# Make ROS and workspace available in all shells
-RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc \
-    && echo "source /workspace/cartographer_ws/install/setup.bash" >> ~/.bashrc
