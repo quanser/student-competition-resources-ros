@@ -96,6 +96,12 @@ def main():
         if copyIsaacROSCommonFiles !=0:
             print("Cannot copy Isaac ROS Common files... please make sure the student-competition-resources-ros repo has been cloned correctly...")
             return
+        
+        # Copy .isaac_ros_common_config file into isaac_ros_common/scripts folder
+        copyIsaacrosconfig = subprocess.call("cp -r /home/$USER/Documents/ACC_Development/student-competition-resources-ros/Virtual_ROS_Resources/env_setup/docker_resources/development_docker/isaac_ros_common_config/.isaac_ros_common-config /home/$USER/Documents/ACC_Development/isaac_ros_common/scripts", shell=True)
+        if copyIsaacrosconfig !=0:
+            print("Cannot copy .isaac_ros_common_config... please make sure the student-competition-resources-ros repo has been cloned correctly...")
+            return
 
         ### Source is from Academic Resources repo ###
         # make Development folder in ACC DEVELOPMENT
@@ -121,6 +127,20 @@ def main():
         if renameSDCSFolder !=0:
             print("Could not rename sdcs folder to python_resources")
             return
+        
+        # delete ros files
+        rosFlag = 0
+        deleteROSFiles = subprocess.call("rm -r /home/$USER/Documents/ACC_Development/Development/python_resources/qcar/hardware/ros1_cpp", shell=True)
+        rosFlag += deleteROSFiles
+        deleteROSFiles = subprocess.call("rm -r /home/$USER/Documents/ACC_Development/Development/python_resources/qcar/hardware/ros1_python", shell=True)
+        rosFlag += deleteROSFiles
+        deleteROSFiles = subprocess.call("rm -r /home/$USER/Documents/ACC_Development/Development/python_resources/qcar/hardware/ros2", shell=True)
+        rosFlag += deleteROSFiles
+        deleteROSFiles = subprocess.call("rm -r /home/$USER/Documents/ACC_Development/Development/python_resources/qcar2/ros2", shell=True)
+        if deleteROSFiles !=0:
+            print("There may be issues removing the ROS resources")
+            return
+
 
         # copy the 0_libraries folder into docker folder 
         copyLibrariesToROSDocker =  subprocess.call("cp -r /home/$USER/Documents/ACC_Development/Quanser_Academic_Resources/0_libraries /home/$USER/Documents/ACC_Development/docker",shell=True)
