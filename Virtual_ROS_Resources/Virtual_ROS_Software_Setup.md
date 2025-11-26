@@ -72,7 +72,7 @@ The purpose of this docker container is to ensure safe setup of the Quanser Inte
     And run the following command:
 
     ```bash
-    sudo docker run --rm -it --network host --name virtual-qcar2 quanser/acc2025-virtual-qcar2 bash
+    sudo docker run --rm -it --network host --name virtual-qcar2 quanser/virtual-qcar2 bash
     ```
 
     This docker container will include the following setup scripts:
@@ -91,7 +91,7 @@ The purpose of this docker container is to ensure safe setup of the Quanser Inte
 **To pull the most recent version of the Docker container (after you go through the below steps first) from Dockerhub use the following command:**
 
 ```bash
-docker pull quanser/acc2025-virtual-qcar2:latest
+docker pull quanser/virtual-qcar2:latest
 ```
 
 ## Set Up the Development Docker Container

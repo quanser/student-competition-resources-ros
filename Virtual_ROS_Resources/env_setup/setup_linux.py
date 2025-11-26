@@ -133,7 +133,6 @@ def main():
             print("Issue copying libraries to docker files folder... please make sure the Quanser_Academic_Resources repo has been cloned correctly...")
             return
 
-
         ##############################################################
         ########### CLEANUP AND BACKUP OF REPOSITORIES ##############
         ##############################################################
