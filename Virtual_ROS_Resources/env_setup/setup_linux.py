@@ -39,10 +39,10 @@ def main():
         #     cloneStudentCompetitionsRepo = subprocess.call("cd /home/$USER/Documents/ACC_Development/; git clone https://github.com/quanser/student-competitions.git", shell=True)
 
         # Clone Quanser Academic Resources repo to get qcar 2 specific resources
-        cloneAcademicResources = subprocess.call("cd /home/$USER/Documents/ACC_Development/; git clone -b main https://github.com/quanser/Quanser_Academic_Resources.git", shell=True)
+        cloneAcademicResources = subprocess.call("cd /home/$USER/Documents/ACC_Development/; git clone -b dev-qcar https://github.com/quanser/Quanser_Academic_Resources.git", shell=True)
         if cloneAcademicResources!=0:
             subprocess.call("sudo apt-get install git", shell = True)
-            cloneStudentCompetitionsRepo = subprocess.call("cd /home/$USER/Documents/ACC_Development/; git clone -b main https://github.com/quanser/Quanser_Academic_Resources.git", shell=True)
+            cloneStudentCompetitionsRepo = subprocess.call("cd /home/$USER/Documents/ACC_Development/; git clone -b dev-qcar https://github.com/quanser/Quanser_Academic_Resources.git", shell=True)
 
 
 
@@ -138,7 +138,6 @@ def main():
         rosFlag += deleteROSFiles
         deleteROSFiles = subprocess.call("rm -r /home/$USER/Documents/ACC_Development/Development/python_resources/qcar2/ros2", shell=True)
         rosFlag += deleteROSFiles
-        deleteROSFiles = subprocess.call("rm -r /home/$USER/Documents/ACC_Development/Development/python_resources/qcar2/hardware/ros2", shell=True)
         if deleteROSFiles !=0:
             print("There may be issues removing the ROS resources")
             return
