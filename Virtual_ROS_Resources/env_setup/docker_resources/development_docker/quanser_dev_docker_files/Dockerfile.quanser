@@ -29,12 +29,6 @@ RUN apt-get update && apt-get install -y \
     quarc-runtime \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python Packages if necessary
-RUN pip3 install -U \
-    pytransform3d \
-    pyqtgraph \
-    matplotlib
-
 # Copy quanser hal and pal folders inside isaac_ros and define environment variable
 COPY ./0_libraries /home/Quanser/0_libraries
 ENV PYTHONPATH=/home/Quanser/0_libraries/python
@@ -42,3 +36,11 @@ ENV PYTHONPATH=/home/Quanser/0_libraries/python
 # adding the cartographer + ros_humble to the ros environment
 RUN touch /home/admin/.bashrc
 RUN echo "source /workspace/cartographer_ws/install/setup.bash" >> /home/admin/.bashrc
+
+######### Install User Packages Here #########
+
+# Install Python packages
+RUN pip3 install -U \
+    pytransform3d \
+    pyqtgraph \
+    matplotlib

@@ -24,7 +24,7 @@ There are 3 components to the development environment that has been constructed 
 
 ![QLabsDevelopmentVennDiagram](../Pictures/DevelopmentVennDiagram.png)
 
-To set these 3 components up, you will need to follow the [ACC Software Setup](/events/common/Virtual_ROS_Resources/Virtual_ROS_Software_Setup.md) document.
+To set these 3 components up, you will need to follow the [ACC Software Setup](./Virtual_ROS_Software_Setup.md) document.
 
 ### Quanser Virtual Container
 
@@ -71,7 +71,7 @@ If you do not plan on using ROS, there is a `python_dev` folder for Python devel
 Once you place files in the folders `python_dev` or `<non_ros_development>`, they will appear in the following directory when you start the Development Docker Container:
 
 ```bash
-admin@username:/workspaces/isaac_ros-dev/<dev_files>
+admin@username:/workspaces/isaac_ros-dev/<non_ros_development>
 ```
 
 ## How can I Change the LED Strip in ROS
@@ -92,7 +92,7 @@ It is expected that all Python development is done in the `python_dev` folder un
 admin@username:/workspaces/isaac_ros-dev/python_dev
 ```
 
-Please view the [Utilizing hal and pal](XXXXXXXXXXXXXXXXXX) guide for more details on utilizing the Quanser Python libraries.
+Please view the [Utilizing hal and pal](./Utilizing_hal_and_pal.md) guide for more details on utilizing the Quanser Python libraries.
 
 ## How to add packages via `apt` that persist
 
@@ -104,7 +104,7 @@ cd /home/$USER/Documents/ACC_Development/docker
 
 At the bottom of the `Dockerfile.quanser` add your Debian packages as shown below:
 
-```bash
+```Dockerfile
 # Install Debian packages
 RUN apt-get update && apt-get install -y \
     python3-transforms3d \
@@ -114,7 +114,7 @@ RUN apt-get update && apt-get install -y \
 
 This example will install pytransform3d and pyqtgraph everytime the container is started. **As you develop in the Development Container**, make sure you record any packages installed via `apt` in the Docker file mentioned above.
 
-**IMPORTANT:** If you ever download the ACC_Resources.zip file and run the `setup_linux.py` file again, this will create a new ACC_Development folder and record a backup of your previous one. Make sure to copy any changes made to `Dockerfile.quanser` over to the new ACC_Development folder.
+**IMPORTANT:** If you ever run `setup_linux.py` again, this will create a new ACC_Development folder and record a backup of your previous one. Make sure to retrieve your `Dockerfile.quanser` from the backup folder.
 
 ## How to add Python packages via `pip3` that persist
 
@@ -128,22 +128,25 @@ cd /home/$USER/Documents/ACC_Development/docker
 
 At the bottom of the `Dockerfile.quanser` add your Python packages as shown below:
 
-```bash
-# Install Python Packages if necessary
+```Dockerfile
+######### Install User Packages Here #########
+
+# Install Python packages
 RUN pip3 install -U \
     pytransform3d \
-    pyqtgraph
+    pyqtgraph \
+    matplotlib
 ```
 
-This example will install pytransform3d and pyqtgraph everytime the container is started. **As you develop in the Development Container**, make sure you record any packages installed via `pip3` in the Docker file mentioned above.
+This example will install pytransform3d and pyqtgraph once the container is started. **As you develop in the Development Container**, make sure you record any packages installed via `pip3` into `Dockerfile.quanser`.
 
-**IMPORTANT:** If you ever download the ACC_Resources.zip file and run the `setup_linux.py` file again, this will create a new ACC_Development folder and record a backup of your previous one. Make sure to copy any changes made to `Dockerfile.quanser` over to the new ACC_Development folder.
+**IMPORTANT:** If you ever run `setup_linux.py` again, this will create a new ACC_Development folder and record a backup of your previous one. Make sure to retrieve your `Dockerfile.quanser` from the backup folder.
 
 ## How to stop the RT Model
 
-When the Setup_Competition_Map.py file gets run (or any other base scenario file provided), a real-time application (RT Model) is deployed that communicates with the virtual QCar 2. This RT Model is what the QCar2 ROS nodes communicate with. It is important to gracefully stop this model once you are no longer using your current workspace. Run the following commands to stop the RT Model:
+When `Setup_Competition_Map.py` gets run (or any other base scenario file provided), a real-time application (RT Model) is deployed that communicates with the virtual QCar 2. This RT Model is what the QCar2 ROS nodes communicate with. It is important to gracefully stop this model once you are no longer using your current workspace. Run the following commands to stop the RT Model:
 
-1. Using the Quanser Virtual Environment Docker container, navigate to the following directory:
+1. Using the `Quanser Virtual Environment Docker` container, navigate to the following directory:
 
     ```bash
     cd /home/qcar2_scripts/python

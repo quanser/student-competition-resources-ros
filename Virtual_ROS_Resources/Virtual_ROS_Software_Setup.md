@@ -29,6 +29,8 @@ Download and set up the Docker Container Resources:
 
 1. Download `setup_linux.py` manually from here: [setup_linux.py](/Virtual_ROS_Resources/env_setup/setup_linux.py)
 
+    ![manually downloading file](../Pictures/github_manually_downloading_file.png)
+
 2. Run `setup_linux.py`
 
 Your system should look like this after running `setup_linux.py`:
@@ -167,4 +169,4 @@ Once everything has run to completion, the QLabs world should look like the foll
     ros2 launch qcar2_nodes qcar2_virtual_launch.py
     ```
 
-**IMPORTANT:** For tips and guides on how to develop in this container, visit the [Virtual ROS Devlopment Guide](/events/common/Virtual_ROS_Resources/Virtual_ROS_Development_Guide.md).
+**IMPORTANT:** For tips and guides on how to develop in this container, visit the [Virtual ROS Devlopment Guide](/Virtual_ROS_Resources/Virtual_ROS_Development_Guide.md).
