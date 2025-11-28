@@ -29,7 +29,7 @@ def main():
         cloneStudentCompetitionResourcesROS = subprocess.call("cd /home/$USER/Documents/ACC_Development/; git clone -b main https://github.com/quanser/student-competition-resources-ros.git", shell=True)
         if cloneStudentCompetitionResourcesROS!=0:
             subprocess.call("sudo apt-get install git", shell = True)
-            cloneStudentCompetitionResourcesROS = subprocess.call("cd /home/$USER/Documents/ACC_Development/; git clone https://github.com/quanser/student-competition-resources-ros.git", shell=True)
+            cloneStudentCompetitionResourcesROS = subprocess.call("cd /home/$USER/Documents/ACC_Development/; git clone -b main https://github.com/quanser/student-competition-resources-ros.git", shell=True)
 
 
         # # Clone Student Competitions repo to get docker container resources and custom Isaac ROS common files 
