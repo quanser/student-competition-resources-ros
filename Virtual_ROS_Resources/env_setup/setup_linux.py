@@ -95,7 +95,7 @@ def main():
             return
 
         # Copy .isaac_ros_common_config file into isaac_ros_common/scripts folder
-        copyIsaacrosconfig = subprocess.call("cp -r /home/$USER/Documents/ACC_Development/student-competition-resources-ros/Virtual_ROS_Resources/env_setup/docker_resources/development_docker/isaac_ros_common_config/.isaac_ros_common-config /home/$USER/Documents/ACC_Development/isaac_ros_common/scripts", shell=True)
+        copyIsaacrosconfig = subprocess.call("cp -r /home/$USER/Documents/ACC_Development/docker/development_docker/isaac_ros_common_config/.isaac_ros_common-config /home/$USER/Documents/ACC_Development/isaac_ros_common/scripts", shell=True)
         if copyIsaacrosconfig !=0:
             print("Cannot copy .isaac_ros_common_config... please make sure the student-competition-resources-ros repo has been cloned correctly...")
             return
