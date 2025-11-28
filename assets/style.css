@@ -1,0 +1,588 @@
+/* Optional: Quanser-like font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* -------------------------------------------------
+Base theme variables (LIGHT MODE defaults)
+-------------------------------------------------- */
+:root {
+    --page-bg: #f3f4f6;           /* overall page background */
+    --surface-bg: #ffffff;        /* main content card background */
+
+    --text-color: #111827;        /* main text */
+    --muted-color: #6b7280;       /* muted text */
+
+    --primary: #c8102e;           /* Quanser red */
+    --primary-dark: #9f0e25;      /* darker Quanser red */
+
+    --border-color: #e5e7eb;      /* light border color */
+
+    --header-bg: #111827;         /* dark header bar */
+    --header-text: #ffffff;       /* header text color */
+    --header-shadow: rgba(15, 23, 42, 0.25);
+
+    --table-head-bg: #111827;     /* table header background */
+    --table-head-text: #ffffff;   /* table header text */
+
+    --toc-pill-bg: #f9fafb;       /* quick-links pill background */
+}
+
+/* -------------------------------------------------
+Dark mode overrides (auto via OS/browser)
+-------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --page-bg: #020617;           /* slate-950-like */
+        --surface-bg: #0f172a;        /* slate-900-like */
+
+        --text-color: #e5e7eb;        /* light text */
+        --muted-color: #9ca3af;       /* gray-400 */
+
+        --primary: #f97373;           /* brighter red for dark mode */
+        --primary-dark: #fecaca;      /* lighter-on-hover accent */
+
+        --border-color: #1f2937;      /* slate-800 */
+
+        --header-bg: #020617;
+        --header-text: #f9fafb;
+        --header-shadow: rgba(0, 0, 0, 0.6);
+
+        --table-head-bg: #020617;
+        --table-head-text: #f9fafb;
+
+        --toc-pill-bg: #0b1120;
+    }
+}
+
+/* -------------------------------------------------
+Global layout / typography
+-------------------------------------------------- */
+
+body {
+    font-family: "Montserrat", system-ui, sans-serif;
+    max-width: 1100px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+    line-height: 1.7;
+    color: var(--text-color);
+    background: var(--page-bg);
+}
+
+/* Header bar at top */
+.site-header {
+    background: var(--header-bg);
+    color: var(--header-text);
+    /* padding: 1.5rem 0rem; */
+    padding: 0rem 0rem; */
+    border-radius: 0.75rem 0.75rem 0 0;
+    border-bottom: 4px solid var(--primary);
+    box-shadow: 0 14px 28px var(--header-shadow);
+}
+
+/* Three-column header layout: left (event), middle (title), right (Quanser) */
+.site-header .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-banner {
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    width: 100%;
+    background: var(--surface-bg);
+}
+
+.header-banner-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    /*max-height: 260px;*/
+    object-fit: contain;    /* Prevent cropping */
+    max-height: none;
+}
+
+/* Columns */
+.header-left,
+.header-middle,
+.header-right {
+    flex: 1;               /* three equal-width zones */
+    display: flex;
+    align-items: center;
+}
+
+/* Left: event logo (aligned left) */
+.header-left {
+    justify-content: flex-start;
+}
+
+/* Middle: centered title */
+.header-middle {
+    justify-content: center;
+    text-align: center;
+}
+
+/* Right: Quanser logo (aligned right) */
+.header-right {
+    justify-content: flex-end;
+}
+
+/* Quanser logo (right) */
+.site-logo {
+    max-height: 48px;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin-left: auto;
+}
+
+/* Event logo (left) – fill up to 90% of column width */
+.event-logo {
+    max-width: 90%;
+    height: auto;
+    max-height: 128px;       /* header max */
+    object-fit: contain;
+    display: block;
+    margin-right: auto;
+    margin-left: 0;
+}
+
+/* Header title */
+.site-header h1 {
+    margin: 0;
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+/* Small-screen tweak */
+@media (max-width: 640px) {
+    .site-header {
+        /* padding: 1.25rem 1.5rem; */
+        padding: 0rem 0rem;
+    }
+
+    .site-logo {
+        max-height: 48px;
+    }
+
+    .event-logo {
+        width: 80%;
+        max-height: 60px;
+    }
+
+    .site-header h1 {
+        font-size: 1.6rem;
+    }
+}
+
+/* -------------------------------------------------
+   TEMPORARILY DISABLE THREE-COLUMN HEADER CONTENT
+   (keep markup in base.html for future use)
+-------------------------------------------------- */
+.site-header .header-inner {
+    display: none;
+}
+
+/* -------------------------------------------------
+   Responsive images inside main content
+   (GitHub-like behavior)
+-------------------------------------------------- */
+.content img {
+    max-width: 100%;      /* never wider than the content column */
+    height: auto;         /* keep aspect ratio */
+    display: block;       /* remove inline gap under images */
+    margin: 1.5rem auto;  /* nice vertical spacing */
+    max-height: 80vh;     /* avoid extremely tall images dominating */
+    object-fit: contain;
+}
+
+/* =================================================
+   Quanser look & feel for main content
+   (cards, headings, links, tables, etc.)
+   ================================================= */
+
+/* Main content card */
+.content {
+    background: var(--surface-bg);
+    border-radius: 0 0 0.75rem 0.75rem;
+    padding: 2rem 2.25rem 2.25rem;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+    border: 1px solid var(--border-color);
+}
+
+/* Slightly tighter padding on small screens */
+@media (max-width: 640px) {
+    .content {
+        padding: 1.5rem 1.25rem 1.75rem;
+    }
+}
+
+/* Headings – clean, bold, Quanser red accents */
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-top: 2.25rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Overriding text in h2 to should as red */
+.content h2 {
+    color: var(--primary);
+}
+
+/* Top-level headings with red underline bar */
+.content h1,
+.content h2 {
+    position: relative;
+    padding-bottom: 0.4rem;
+}
+
+.content h1::after,
+.content h2::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 3px;
+    margin-top: 0.35rem;
+    background: var(--primary);
+    border-radius: 0;
+}
+
+/* Scales */
+.content h1 { font-size: 2rem; }
+.content h2 { font-size: 1.6rem; }
+.content h3 { font-size: 1.35rem; }
+.content h4 { font-size: 1.15rem; }
+.content h5 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.content h6 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-color); }
+
+/* Paragraphs & basic text */
+.content p {
+    margin: 0 0 1rem 0;
+    color: var(--text-color);
+}
+
+.content p.lead {
+    font-size: 1.05rem;
+    color: var(--muted-color);
+}
+
+/* Lists (default) */
+.content ul,
+.content ol {
+    padding-left: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.content li {
+    margin-bottom: 0.35rem;
+}
+
+/* Horizontal rule */
+.content hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 2rem 0;
+}
+
+/* -------------------------------------------------
+   Links & CTAs
+-------------------------------------------------- */
+
+.content a {
+    color: var(--primary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 160ms ease, box-shadow 160ms ease;
+}
+
+.content a:hover,
+.content a:focus-visible {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* Button-style links (optional utility classes) */
+.btn,
+.button,
+.button-primary,
+.content .btn,
+.content .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 1.25rem;
+    border-radius: 999px;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    background: var(--primary);
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 8px 16px rgba(200, 16, 46, 0.4);
+    transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+.btn:hover,
+.button:hover,
+.button-primary:hover,
+.content .btn:hover,
+.content .button:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 10px 24px rgba(200, 16, 46, 0.55);
+    transform: translateY(-1px);
+}
+
+/* For actual <button> or <input> elements */
+button,
+input[type="submit"],
+input[type="button"] {
+    font-family: "Montserrat", system-ui, sans-serif;
+}
+
+/* -------------------------------------------------
+   Blockquotes & callouts
+-------------------------------------------------- */
+
+.content blockquote {
+    margin: 1.75rem 0;
+    padding: 1rem 1.25rem;
+    border-left: 4px solid var(--primary);
+    background: rgba(15, 23, 42, 0.02);
+    color: var(--muted-color);
+    border-radius: 0.375rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .content blockquote {
+        background: rgba(15, 23, 42, 0.6);
+    }
+}
+
+/* -------------------------------------------------
+   Code blocks & inline code
+-------------------------------------------------- */
+
+.content code {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.9em;
+    background: rgba(15, 23, 42, 0.04);
+    padding: 0.1em 0.35em;
+    border-radius: 0.25rem;
+}
+
+.content pre {
+    background: #0b1120;
+    color: #e5e7eb;
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 1.5rem 0;
+}
+
+.content pre code {
+    background: transparent;
+    padding: 0;
+}
+
+/* -------------------------------------------------
+   Tables (GitHub-style with Quanser branding)
+-------------------------------------------------- */
+
+/* Support tables directly and tables wrapped in <center> */
+.content table,
+.content center > table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+}
+
+.content th,
+.content td,
+.content center > table th,
+.content center > table td {
+    border: 1px solid var(--border-color);
+    padding: 0.6rem 0.7rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+/* Header row with dark background */
+.content thead th,
+.content center > table thead th {
+    background: var(--table-head-bg);
+    color: var(--table-head-text);
+    font-weight: 600;
+}
+
+/* If the MD didn't create a <thead>, style first row as header when using GitHub-style tables */
+/* Commenting out default
+.content table tr:first-child th,
+.content table tr:first-child td,
+.content center > table tr:first-child th,
+.content center > table tr:first-child td {
+    background: var(--table-head-bg);
+    color: var(--table-head-text);
+    font-weight: 600;
+}
+*/
+
+/* Zebra striping */
+.content tbody tr:nth-child(even),
+.content center > table tbody tr:nth-child(even) {
+    background: rgba(15, 23, 42, 0.02);
+}
+
+@media (prefers-color-scheme: dark) {
+    .content tbody tr:nth-child(even),
+    .content center > table tbody tr:nth-child(even) {
+        background: rgba(15, 23, 42, 0.7);
+    }
+}
+
+/* Centered table wrapper (from <center> tag) */
+.content center {
+    display: block;
+    text-align: center;
+}
+
+/* -------------------------------------------------
+   “Quick links” / TOC pills (explicit block)
+-------------------------------------------------- */
+
+.toc,
+.quick-links {
+    margin: 1.5rem 0 2rem;
+    padding: 1rem 1.1rem;
+    border-radius: 999px;
+    background: var(--toc-pill-bg);
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.75rem;
+    align-items: center;
+}
+
+.toc-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted-color);
+    margin-right: 0.5rem;
+}
+
+.toc a,
+.quick-links a {
+    font-size: 0.9rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.6);
+    text-decoration: none;
+    color: var(--text-color);
+    background: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+    .toc a,
+    .quick-links a {
+        background: #020617;
+        border-color: rgba(148, 163, 184, 0.8);
+        color: var(--table-head-text);
+    }
+}
+
+.toc a:hover,
+.quick-links a:hover {
+    border-color: var(--primary);
+    color: var(--primary-dark);
+}
+
+/* -------------------------------------------------
+   AUTO “options row” for first list under the intro
+   (styles .content > ul:first-of-type like old pills)
+-------------------------------------------------- */
+
+/* Turn the first top-level UL in .content into a pill row */
+.content > ul:first-of-type {
+    list-style: none;
+    padding-left: 0;
+    margin: 1.5rem 0 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.75rem;
+}
+
+/* Remove extra spacing between items */
+.content > ul:first-of-type > li {
+    margin: 0;
+}
+
+/* Pill links: red text, neutral border */
+.content > ul:first-of-type > li > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    padding: 0.30rem 0.85rem;
+    border-radius: 999px;
+
+    border: 1px solid var(--border-color); /* gray border */
+    text-decoration: none;
+    color: var(--primary);                 /* Quanser red text */
+    background: #ffffff;
+    font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+    .content > ul:first-of-type > li > a {
+        background: #020617;
+        border-color: rgba(148, 163, 184, 0.35); /* subtle gray */
+        color: var(--primary);
+    }
+}
+
+/* Hover: highlight only by border color */
+.content > ul:first-of-type > li > a:hover {
+    border-color: var(--primary);          /* red highlight on hover */
+    text-decoration: none;
+}
+
+/* -------------------------------------------------
+   Small utility classes
+-------------------------------------------------- */
+
+.text-muted {
+    color: var(--muted-color);
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.1rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: 1px solid var(--border-color);
+    color: var(--muted-color);
+}
+
+.badge-primary {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
