@@ -17,10 +17,16 @@ By the end of this document, you will have a Quanser Virtual Environment Docker 
 
 ## System Requirements
 
-Linux System base requirements:
+`Linux System base requirements:`
 
 - Ubuntu 24.04 LTS
-- Nvidia Based GPU
+- **Nvidia Based GPU**
+
+`Recommended Hardware:`
+
+- Graphics Card: 4050m or equivalent
+- Processor: i5-13500HX or equivalent
+- Memory: 16 GB RAM
 
 Please follow this guide to correctly setup Docker engine on your ground station PC: \
 [Docker Installation Instructions](https://docs.docker.com/engine/install/ubuntu/)
@@ -63,9 +69,11 @@ The purpose of this docker container is to ensure safe setup of the Quanser Inte
     sudo apt-get install qlabs-unreal python3-quanser-apis  quarc-runtime
     ```
 
-3. Register an account in the [Quanser Academic Portal](https://portal.quanser.com/Accounts/Register) to obtain access for Quanser Interactive Labs.
+3. Ensure you have [registered for your competition](https://quanser.github.io/student-competitions/) (Necessary for gaining access to QLabs). This could take a few days.
 
-4. To setup Quanser's custom python docker navigate to the folder:
+4. Register an account in the [Quanser Academic Portal](https://portal.quanser.com/Accounts/Register) to obtain access for Quanser Interactive Labs.
+
+5. To setup Quanser's custom python docker navigate to the folder:
 
     ```bash
     cd /home/$USER/Documents/ACC_Development/docker/development_docker/quanser_dev_docker_files
@@ -84,7 +92,7 @@ The purpose of this docker container is to ensure safe setup of the Quanser Inte
                             L Base_Scenarios_Python/
     ```
 
-5. **To open additional terminals attached to the docker container**, run the following command in a new terminal:
+6. **To open additional terminals attached to the docker container**, run the following command in a new terminal:
 
     ```bash
     docker exec -it virtual-qcar2 bash

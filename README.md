@@ -16,6 +16,10 @@ This repo contains all the resources available for the Quanser ROS-based competi
 
 [Virtual Stage ROS FAQ](./Virtual_ROS_Resources/Virtual_Stage_ROS_FAQ.md): Contains longer form answers that addresses common issues/concerns with the resources.
 
+## 💻 Software Requirements 💻
+
+**Software requirements depend on the competition you are participating in**, so please refer to the posted software requirements on the correct [competition page](https://quanser.github.io/student-competitions/).
+
 ## ❓ FAQ ❓
 
 For any bugs in the released resources, please post an issue in the [Github Issues](https://github.com/quanser/student-competition-resources-ros/issues)

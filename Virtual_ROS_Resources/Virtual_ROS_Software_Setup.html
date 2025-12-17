@@ -41,10 +41,16 @@
 <p>By the end of this document, you will have a Quanser Virtual Environment Docker Container that can be used to spawn the QCar 2 in QLabs. You will have a Development Docker Container where you will develop your code and run the ROS2 nodes. And, you will have QLabs installed. The configuration will look like this:</p>
 <p><img alt="QLabsDevelopmentVennDiagram" src="../Pictures/DevelopmentVennDiagram.png"/></p>
 <h2 id="system-requirements">System Requirements</h2>
-<p>Linux System base requirements:</p>
+<p><code>Linux System base requirements:</code></p>
 <ul>
 <li>Ubuntu 24.04 LTS</li>
-<li>Nvidia Based GPU</li>
+<li><strong>Nvidia Based GPU</strong></li>
+</ul>
+<p><code>Recommended Hardware:</code></p>
+<ul>
+<li>Graphics Card: 4050m or equivalent</li>
+<li>Processor: i5-13500HX or equivalent</li>
+<li>Memory: 16 GB RAM</li>
 </ul>
 <p>Please follow this guide to correctly setup Docker engine on your ground station PC: \
 <a href="https://docs.docker.com/engine/install/ubuntu/">Docker Installation Instructions</a></p>
@@ -81,6 +87,9 @@ sudo apt update</code></p>
 <p>Install QLabs, Quanser Python APIs, and QUARC runtime:</p>
 <p><code>bash
 sudo apt-get install qlabs-unreal python3-quanser-apis  quarc-runtime</code></p>
+</li>
+<li>
+<p>Ensure you have <a href="https://quanser.github.io/student-competitions/">registered for your competition</a> (Necessary for gaining access to QLabs). This could take a few days.</p>
 </li>
 <li>
 <p>Register an account in the <a href="https://portal.quanser.com/Accounts/Register">Quanser Academic Portal</a> to obtain access for Quanser Interactive Labs.</p>
