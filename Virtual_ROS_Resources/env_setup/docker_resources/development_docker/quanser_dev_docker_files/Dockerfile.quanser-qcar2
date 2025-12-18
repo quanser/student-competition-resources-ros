@@ -54,5 +54,5 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy quanser hal and pal folders inside isaac_ros and define environment variable
-COPY ./libraries /home/Quanser/libraries
-ENV PYTHONPATH=/home/Quanser/libraries/python
+COPY ./0_libraries /home/Quanser/0_libraries
+ENV PYTHONPATH=/home/Quanser/0_libraries/python

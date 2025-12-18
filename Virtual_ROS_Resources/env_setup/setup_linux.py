@@ -189,6 +189,9 @@ if __name__=="__main__":
     cleanupFlag = main()
     # cleanup check
     if cleanupFlag == 1 and cleanupEnable == 1:
+
+        print("Cleaning up the ACC_Development folder due to setup issues...")
+
         # Remove ACC_Development folder
         removeACCDevelopment =  subprocess.call("rm -r -f /home/$USER/Documents/ACC_Development", shell=True)
         if removeACCDevelopment !=0:
