@@ -4,9 +4,9 @@ This repo contains all the resources available for the Quanser ROS-based competi
 
 ## 🗄️ Resource List 🗄️
 
-[Student Competitions](https://quanser.github.io/student-competitions/): Contains competition specific details and the rules & objectives for each competition.
+[Student Competition Webpages](https://quanser.github.io/student-competitions/): Contains competition specific details and the rules & objectives for each competition.
 
-[Virtual ROS Software Setup](./Virtual_ROS_Resources/Virtual_ROS_Software_Setup.md): Contains the instructions and requirements to set up your computer to utilize the Quanser Resources. **This is a good place to start if lost.**
+[Virtual ROS Software Setup Guide](./Virtual_ROS_Resources/Virtual_ROS_Software_Setup.md): Contains the instructions and requirements to set up your computer to utilize the Quanser Resources. **START HERE IF LOST**.
 
 [Virtual ROS Development Guide](./Virtual_ROS_Resources/Virtual_ROS_Development_Guide.md): Contains guidelines on how to interact with the Development Container (isaac-ros).
 
