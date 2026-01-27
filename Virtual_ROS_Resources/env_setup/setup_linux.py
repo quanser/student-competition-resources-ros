@@ -150,6 +150,12 @@ def main():
         if copyLibrariesToROSDockerfiles !=0:
             print("Issue copying libraries to docker files folder... please make sure the Quanser_Academic_Resources repo has been cloned correctly...")
             return 1
+        
+        # rename sourcesVirtual.list to sources.list
+        renameSourcesList = subprocess.call("mv /home/$USER/Documents/ACC_Development/docker/development_docker/quanser_dev_docker_files/sourcesVirtual.list /home/$USER/Documents/ACC_Development/docker/development_docker/quanser_dev_docker_files/sources.list", shell=True)
+        if renameSourcesList !=0:
+            print("Could not rename sourcesVirtual.list to sources.list")
+            return 1
 
         ##############################################################
         ########### CLEANUP AND BACKUP OF REPOSITORIES ##############
