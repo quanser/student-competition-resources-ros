@@ -152,7 +152,7 @@ def main():
             return 1
         
         # rename sourcesVirtual.list to sources.list
-        renameSourcesList = subprocess.call("mv /home/$USER/Documents/ACC_Development/docker/development_docker/quanser_dev_docker_files/sourcesVirtual.list /home/$USER/Documents/ACC_Development/docker/development_docker/quanser_dev_docker_files/sources.list", shell=True)
+        renameSourcesList = subprocess.call("mv /home/$USER/Documents/ACC_Development/docker/development_docker/quanser_dev_docker_files/miscs/sourcesVirtual.list /home/$USER/Documents/ACC_Development/docker/development_docker/quanser_dev_docker_files/miscs/sources.list", shell=True)
         if renameSourcesList !=0:
             print("Could not rename sourcesVirtual.list to sources.list")
             return 1
