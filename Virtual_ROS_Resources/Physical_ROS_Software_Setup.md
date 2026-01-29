@@ -60,7 +60,6 @@ After running the file, the QCar should have the following folder structure:
                         L Development/
                         L isaac_ros_common/
                         L docker/
-                        L dev/
                         L backup/
 ```
 
@@ -118,7 +117,7 @@ Follow the below steps to run the ROS2 Humble Nodes natively on the QCar 2 and h
 5. Copy the compiled ROS nodes and interfaces to the container so that the Isaac-ros container has access to the messages the QCar nodes are using:
 
     ```bash
-    cp -r ~/ros2/install/ ~/Documents/ACC_Development/dev/
+    cp -r ~/ros2/install/ ~/Documents/ACC_Development/Development
     ```
 
 6. Source the recently compiled ROS packages:
@@ -143,7 +142,7 @@ _____________
 
     ```bash
     cd /home/$USER/Documents/ACC_Development/isaac_ros_common
-    ./scripts/run_dev.sh  /home/$USER/Documents/ACC_Development/dev
+    ./scripts/run_dev.sh  /home/$USER/Documents/ACC_Development/Development
     ```
 
     Note: To open additional terminals, run the above 2 commands in a new terminal.
@@ -163,3 +162,55 @@ _____________
 11. Add 'By Topic' relevant topics such as `/laserscan`. For `/laserscan`, switch the Fixed frame in Global options to `base_scan` by typing it in.
 
 ## Running Nav2
+
+The following steps will assume you have 1 terminal connected to the Isaac-ROS container (Development Terminal) and 1 regular terminal (Native Terminal) that has sourced ROS Humble and the built packages:
+
+1. Run the Nav2 launch file in the Native Terminal.
+
+    ```bash
+    source /opt/ros/humble/setup.bash
+    cd /home/$USER/ros2
+    source install/setup.bash
+    ros2 launch qcar2_nodes qcar2_slam_and_nav_bringup_launch.py
+    ```
+
+Now the Development Terminal will be used.
+
+```bash
+cd /home/$USER/Documents/ACC_Development/isaac_ros_common
+./scripts/run_dev.sh  /home/$USER/Documents/ACC_Development/Development
+```
+
+2. Source ROS
+
+    ```bash
+    source install/setup.bash
+    ```
+
+3. Open `rviz2` in the Development Terminal.
+
+    ```bash
+    rviz2
+    ```
+
+4. Switch the Fixed frame in Global options to `base_scan` by typing it in. 
+
+5. Add the following topics to the Display. Click on `add` in the bottom left of `rviz2`.
+
+    - `TF` will be under `By display type`.
+    - `LaserScan` and `Map` will be under `By topic`.
+
+    ```bash
+    Display
+        L TF
+        L LaserScan
+        L Map
+    ```
+
+    ![Rviz2PictureofAddingTopicstoDisplay](../Pictures/rviz2AddingTopics.png)
+
+6. In `rviz2` select the `2D Goal Pose`.
+
+    ![Selecting2DGoalPose](../Pictures/rviz2SetPoseButton.png)
+
+7. Click and drag within the gridded area to set the goal pose and orientation. A green arrow should appear and show your selection.
