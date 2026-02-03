@@ -15,15 +15,17 @@ This repo contains all the resources available for the Quanser ROS-based competi
 
 ________________
 
-[Physical ROS Software Setup](./Virtual_ROS_Resources/Physical_ROS_Software_Setup.md): Contains instructions on how to set up a QCar 2 with the Isaac-ROS (Development) Container
+[Physical ROS Software Setup Guide](./Virtual_ROS_Resources/Physical_ROS_Software_Setup.md): Contains instructions on how to set up a QCar 2 with the Isaac-ROS (Development) Container
+
+[Physical ROS Development Guide](./Virtual_ROS_Resources/Physical_ROS_Software_Setup.md): Contains an introduction to the software architecture of the Docker setup on the Physical QCar 2.
 
 ________________
 
-[Utilizing hal and pal](./Virtual_ROS_Resources/Utilizing_hal_and_pal.md): hal/pal from the Quanser Academic Resources have been made available in the Development Container. This document describes some important details.
+[Utilizing hal and pal](./Virtual_ROS_Resources/Utilizing_hal_and_pal.md): hal/pal from the Quanser Academic Resources have been made available in the Isaac-ROS (Development) Container. This document describes some important details.
 
 ## 💻 Software Requirements 💻
 
-**Software requirements depend on the competition you are participating in**, so please refer to the posted software requirements on the correct [competition page](https://quanser.github.io/student-competitions/).
+Software requirements depend on the competition you are participating in, so please refer to the posted software requirements on the correct [competition page](https://quanser.github.io/student-competitions/).
 
 ## ❓ FAQ ❓
 

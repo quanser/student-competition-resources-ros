@@ -12,6 +12,7 @@ This guide will cover all the information necessary to utilize the `hal` and `pa
 
 - [Location of Libraries](#location-of-libraries)
 - [Examples using `hal/pal`](#examples-using-halpal)
+- [Best Practices for a Python only Setup](#best-practices-for-a-python-only-setup)
 
 ## Location of Libraries
 
@@ -44,3 +45,25 @@ cd /workspaces/isaac_ros-dev/python_dev
 ```
 
 There are basic hardware tests that showcase how to interface with the QCar 2.
+
+## Best Practices for a Python only Setup
+
+We understand that some of our participants are choosing to stick to a Python only setup. It is important that these users understand that damaging the native Python installation can lead to a bricked QCar 2 that can only be fixed by sending it back to Quanser. To avoid this, always check the following software list for conflicts before installing packages: [QCar2 QUARC Documentation](https://docs.quanser.com/quarc/documentation/qcar2.html).
+
+We also recommend that you work inside a virtual environment. Please use the following to create a `venv` for Python:
+
+1. Install the debian version of venv:
+
+    ```bash
+    sudo apt install python3.8-venv
+    ```
+
+2. Create the virtual environment and give it access to the system packages so that the Quanser Python API can be used:
+
+    ```bash
+    python3.8 -m venv --system-site-packages .
+    ```
+
+The command `deactivate` will exit the virtual environment when you are inside of it and to reactivate the environment, `source /path_to_venv/bin/activate`.
+
+It is important to keep track of the Python packages that you have installed so that you can recreate the venv if you break things.
