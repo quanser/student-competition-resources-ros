@@ -1,6 +1,6 @@
-# Virtual Stage ROS Software Setup <!-- omit in toc -->
+# Physical Stage ROS Software Setup <!-- omit in toc -->
 
-Please go through the following steps to set up a computer with the Quanser Virtual Development Environment.
+Please go through the following steps to set up a QCar 2 with the necessary resources to run the ROS development environment.
 
 ## Description <!-- omit in toc -->
 
